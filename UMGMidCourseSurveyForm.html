@@ -1,0 +1,941 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mid Course Survey</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #f6f7fb;
+        --paper: #ffffff;
+        --ink: #1f2a37;
+        --muted: #4b5563;
+        --accent: #0b70b7;
+        --accent-dark: #094f82;
+        --accent-soft: rgba(11, 112, 183, 0.12);
+        --border: #e5e7eb;
+        --ring: rgba(11, 112, 183, 0.25);
+        --warning: #b91c1c;
+        --success: #15803d;
+        --surface: #f8fafc;
+        --shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+        --shadow-strong: 0 24px 60px rgba(15, 23, 42, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Inter", "Segoe UI", sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+        min-height: 100vh;
+      }
+
+      .page {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 44px 20px 80px;
+      }
+      .announcement {
+        background: var(--accent);
+        color: #f8fafc;
+        text-align: center;
+        padding: 10px 16px;
+        font-weight: 600;
+        font-size: 14px;
+      }
+
+      .announcement a {
+        color: #f8fafc;
+        text-decoration: underline;
+        font-weight: 700;
+      }
+
+      .hero {
+        background: var(--paper);
+        border-radius: 20px;
+        padding: 32px 32px;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border);
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 32px;
+        align-items: center;
+      }
+
+      .logo-row {
+        display: flex;
+        justify-content: flex-start;
+        margin-bottom: 16px;
+      }
+
+      .logo-row img {
+        max-height: 90px;
+        width: auto;
+        display: block;
+      }
+
+      .hero-content h1 {
+        margin: 0 0 10px;
+        font-size: clamp(30px, 3.3vw, 38px);
+        font-weight: 700;
+        font-family: "Poppins", "Inter", sans-serif;
+        line-height: 1.15;
+        color: var(--ink);
+      }
+
+      .hero-content .lede {
+        margin: 0 0 18px;
+        font-size: 16px;
+        line-height: 1.5;
+        color: var(--muted);
+      }
+
+      .eyebrow {
+        margin: 0 0 6px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 1.6px;
+        text-transform: uppercase;
+        color: var(--accent);
+        font-family: "Poppins", "Inter", sans-serif;
+      }
+
+
+      .card {
+        background: var(--paper);
+        border-radius: 20px;
+        padding: 28px 30px;
+        margin-top: 32px;
+        box-shadow: var(--shadow);
+        border: 1px solid rgba(11, 122, 67, 0.08);
+      }
+
+      .section-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 18px;
+      }
+
+      .section-title .title-stack {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .section-title span {
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 1.6px;
+        color: var(--accent);
+        font-weight: 600;
+      }
+
+      .section-title h2 {
+        margin: 0;
+        font-size: 22px;
+        font-family: "Poppins", "Inter", sans-serif;
+        letter-spacing: 0.2px;
+      }
+
+      .id-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 12px;
+        align-items: center;
+      }
+
+      label {
+        display: block;
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 6px;
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 12px 14px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        font-size: 14px;
+        font-family: "Inter", "Segoe UI", sans-serif;
+        outline: none;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+        background: #fff;
+        min-height: 44px;
+        resize: none;
+        overflow-y: auto;
+      }
+
+      input[type="radio"] {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        border: 2px solid #9ca3af;
+        display: grid;
+        place-content: center;
+        background: #fff;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      }
+
+      input[type="radio"]::before {
+        content: "";
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        transform: scale(0);
+        transition: transform 0.15s ease-in-out;
+        background: var(--accent);
+      }
+
+      input[type="radio"]:checked::before {
+        transform: scale(1);
+      }
+
+      input[type="radio"]:checked {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgba(11, 122, 67, 0.15);
+      }
+
+      input:focus,
+      textarea:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 4px var(--ring);
+      }
+
+      input[readonly] {
+        background: #f8fafc;
+        border-color: #cbd5f5;
+        color: #1e293b;
+      }
+
+      input::placeholder,
+      textarea::placeholder {
+        color: #9aa3b2;
+      }
+
+      .inline-badge {
+        display: none;
+      }
+
+      .hint {
+        color: var(--muted);
+        font-size: 13px;
+        margin-top: 6px;
+      }
+
+      .or-divider {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 0 6px;
+        font-weight: 700;
+        color: var(--accent);
+        letter-spacing: 0.5px;
+      }
+
+      .or-divider::before,
+      .or-divider::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        border-radius: 999px;
+        background: linear-gradient(
+          90deg,
+          rgba(11, 122, 67, 0),
+          rgba(11, 122, 67, 0.2),
+          rgba(11, 122, 67, 0)
+        );
+      }
+
+      .helper-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-top: 6px;
+        flex-wrap: wrap;
+      }
+
+      .helper-row p {
+        margin: 0;
+      }
+
+      .access-actions {
+        margin-top: 18px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .access-error {
+        color: var(--warning);
+        font-size: 13px;
+        font-weight: 600;
+        display: none;
+      }
+
+      .access-error.visible {
+        display: block;
+      }
+
+      .access-summary {
+        margin-top: 16px;
+        padding: 14px;
+        border-radius: 12px;
+        background: #eff6ff;
+        border: 1px solid #bfdbfe;
+        display: none;
+        font-size: 13px;
+        color: #1e3a8a;
+      }
+
+      .access-summary.visible {
+        display: block;
+        animation: fadeIn 0.4s ease;
+      }
+
+      .access-summary span {
+        font-weight: 600;
+      }
+
+      .student-info {
+        display: none;
+        margin-top: 12px;
+        padding: 12px;
+        border-radius: 10px;
+        background: #eefcf3;
+        border: 1px solid #c4f0d2;
+        color: var(--ink);
+        font-size: 14px;
+      }
+
+      .student-info.visible {
+        display: block;
+      }
+
+      .course-container {
+        display: none;
+        margin-top: 14px;
+      }
+
+      .course-help {
+        margin: 0 0 6px;
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 600;
+        font-family: "Poppins", "Inter", sans-serif;
+      }
+
+      .course-selected {
+        display: none;
+        margin: 0 0 12px;
+        font-size: 16px;
+        font-weight: 700;
+        color: #a3123a;
+        font-family: "Poppins", "Inter", sans-serif;
+        letter-spacing: 0.2px;
+      }
+
+      .course-selected .course-name {
+        color: #0b70b7;
+        font-weight: 700;
+      }
+
+      .survey {
+        display: none;
+      }
+
+      .survey.visible {
+        display: block;
+        animation: fadeIn 0.4s ease;
+      }
+
+      .question {
+        padding: 18px 0;
+        border-bottom: 1px solid #eef2f7;
+      }
+
+      .question:last-child {
+        border-bottom: none;
+      }
+
+      .question h3 {
+        margin: 0 0 12px;
+        font-size: 17px;
+        line-height: 1.5;
+        font-weight: 600;
+        font-family: "Poppins", "Inter", sans-serif;
+      }
+
+      .options {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        font-family: "Inter", "Segoe UI", sans-serif;
+      }
+
+      .options label {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        font-weight: 500;
+        padding: 6px 14px;
+        border-radius: 12px;
+        background: #fff;
+        border: 1px solid var(--border);
+        transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease,
+          box-shadow 0.2s ease;
+        position: relative;
+        min-height: 32px;
+      }
+
+      .options input {
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0;
+        width: 16px;
+        height: 16px;
+      }
+
+      .options label:hover {
+        border-color: #c7ddf5;
+        background: #f1f6fd;
+        transform: translateY(-1px);
+      }
+
+      .options label span {
+        position: relative;
+        padding-left: 26px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        line-height: 1.2;
+      }
+
+      .options label span::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        border: 2px solid #5b6b7e;
+        background: #fff;
+        transform: translateY(-50%);
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .options label span::after {
+        content: "";
+        position: absolute;
+        left: 6px;
+        top: 50%;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--accent);
+        transform: translate(-50%, -50%) scale(0);
+        transition: transform 0.15s ease-in-out;
+      }
+
+      .options input:checked + span::before {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 2px rgba(11, 112, 183, 0.18);
+      }
+
+      .options input:checked + span::after {
+        transform: translateY(-50%) scale(1);
+      }
+
+      .options input:focus-visible + span::before {
+        box-shadow: 0 0 0 3px var(--ring);
+      }
+
+      .actions {
+        margin-top: 24px;
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      button {
+        border: none;
+        background: var(--accent);
+        color: #fff;
+        padding: 14px 20px;
+        min-height: 54px;
+        border-radius: 12px;
+        font-family: "Inter", "Segoe UI", sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background 0.2s ease, transform 0.2s ease;
+        box-shadow: 0 12px 24px rgba(11, 122, 67, 0.2);
+      }
+
+      button:hover {
+        background: var(--accent-dark);
+        transform: translateY(-1px);
+      }
+
+      button[type="reset"] {
+        background: transparent;
+        color: var(--accent);
+        border: 1px solid var(--accent);
+        box-shadow: none;
+      }
+
+      button[type="reset"]:hover {
+        background: var(--accent-soft);
+        color: var(--accent-dark);
+      }
+
+      button:disabled {
+        background: #94a3b8;
+        box-shadow: none;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      .thank-you {
+        display: none;
+        margin-top: 24px;
+        padding: 18px;
+        border-radius: 14px;
+        background: #ecfdf3;
+        border: 1px solid #bbf7d0;
+        font-size: 14px;
+        color: #166534;
+        position: relative;
+        padding-left: 46px;
+      }
+
+      .thank-you h4 {
+        margin: 0 0 8px;
+        font-size: 16px;
+      }
+
+      .thank-you p {
+        margin: 0;
+      }
+
+      .thank-you.visible {
+        display: block;
+        animation: fadeIn 0.4s ease;
+      }
+
+      .thank-you::before {
+        content: "";
+        position: absolute;
+        left: 16px;
+        top: 18px;
+        font-weight: 700;
+        color: #0f9f4b;
+      }
+
+      .thankyou-full {
+        display: none;
+        min-height: 80vh;
+        background: var(--bg);
+        align-items: center;
+        justify-content: center;
+        padding: 40px 20px 80px;
+      }
+
+      .thankyou-full .thank-you {
+        max-width: 540px;
+        width: 100%;
+      }
+
+      .announcement-line {
+        height: 10px;
+        background: linear-gradient(90deg, #a3123a 0%, #a3123a 50%, #0b70b7 50%, #0b70b7 100%);
+        width: 100%;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(6px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 900px) {
+        .hero {
+          grid-template-columns: 1fr;
+          padding: 26px;
+        }
+
+        .id-grid {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .or-divider {
+          width: 100%;
+          justify-content: center;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .hero {
+          padding: 24px;
+        }
+
+        .card {
+          padding: 22px;
+        }
+
+        .section-title {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="announcement-line"></div>
+    <div id="mainContent">
+      <div class="page">
+        <section class="hero">
+          <div class="logo-row">
+            <img
+              src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTwA242ViRjXtnlbxeJ1ztqAhIfl_Lk65TPLVw3JqkS2hDfRzcj"
+              alt="University of Massachusetts Global"
+            />
+          </div>
+        <div class="hero-content">
+          <p class="eyebrow">Mid Course Survey</p>
+          <h1>Help us improve this course mid-way.</h1>
+          <p class="lede">Share your feedback from this week so we can improve the learning experience immediately.</p>
+
+          <div class="id-grid">
+            <div>
+              <label for="studentUid">Student UID</label>
+              <input id="studentUid" type="text" placeholder="e.g., UMG12345" />
+            </div>
+            <div class="or-divider">OR</div>
+            <div>
+              <label for="studentEmail">Registered Email</label>
+              <input id="studentEmail" type="email" placeholder="name@email.com" />
+            </div>
+            <div class="or-divider">OR</div>
+            <div>
+              <label for="studentMobile">Mobile Number</label>
+              <input id="studentMobile" type="tel" placeholder="e.g., 9876543210" />
+            </div>
+          </div>
+
+          <div class="access-actions">
+            <button type="button" id="accessBtn" aria-describedby="accessError">Access Survey</button>
+            <div class="inline-badge"></div>
+          </div>
+          <div class="access-error" id="accessError" role="alert"></div>
+          <div class="access-summary" id="accessSummary" aria-live="polite"></div>
+          <div class="student-info" id="studentInfo" aria-live="polite"></div>
+          <div class="course-container" id="courseContainer">
+            <p class="course-help">Select the course you want to give feedback for.</p>
+            
+            <select id="courseSelect">
+              <option value="" selected>Select Course</option>
+            </select>
+          </div>
+        </div>
+        </section>
+
+        <section class="card survey" id="surveySection" aria-live="polite">
+        <div class="section-title">
+          <div class="title-stack">
+            <span></span>
+            <h2></h2>
+          </div>
+        </div>
+        <div class="course-selected" id="courseSelected"></div>
+        <form id="surveyForm">
+                    <div class="question">
+            <h3>
+              Q1. Please rate the effectiveness of coursework till this week (videos, application exercises,
+              discussions, etc.) for your learning on a scale of 1 to 5 (5 being the highest).
+            </h3>
+            <div class="options">
+              <label><input type="radio" name="q1" value="1" required /><span>1</span></label>
+              <label><input type="radio" name="q1" value="2" required /><span>2</span></label>
+              <label><input type="radio" name="q1" value="3" required /><span>3</span></label>
+              <label><input type="radio" name="q1" value="4" required /><span>4</span></label>
+              <label><input type="radio" name="q1" value="5" required /><span>5</span></label>
+            </div>
+          </div>
+
+          <div class="question">
+            <h3>Q2. Please comment on what made these modules effective.</h3>
+            <textarea name="q2" rows="4" required></textarea>
+          </div>
+
+          <div class="question">
+            <h3>Q3. Please comment on what could have been improved till this week.</h3>
+            <textarea name="q3" rows="4" required></textarea>
+          </div>
+
+
+          <div class="actions">
+            <button type="submit">Submit Survey</button>
+            <button type="reset">Reset</button>
+          </div>
+        </form>
+      </section>
+      </div>
+    </div>
+    <div class="thankyou-full" id="thankYouPanel" aria-live="polite">
+      <div class="thank-you visible">
+        <h4>Thank you for your feedback.</h4>
+        <p>
+          Your responses have been securely recorded. We review every submission to improve the course and the student
+          experience.
+        </p>
+      </div>
+    </div>
+
+    <script>
+      const uidInput = document.getElementById("studentUid");
+      const emailInput = document.getElementById("studentEmail");
+      const mobileInput = document.getElementById("studentMobile");
+      const courseSelect = document.getElementById("courseSelect");
+      const courseContainer = document.getElementById("courseContainer");
+      const courseSelected = document.getElementById("courseSelected");
+      const surveySection = document.getElementById("surveySection");
+      const surveyForm = document.getElementById("surveyForm");
+      const thankYouPanel = document.getElementById("thankYouPanel");
+      const mainContent = document.getElementById("mainContent");
+      const accessButton = document.getElementById("accessBtn");
+      const accessError = document.getElementById("accessError");
+      const accessSummary = document.getElementById("accessSummary");
+      const studentInfo = document.getElementById("studentInfo");
+      const optionGroups = document.querySelectorAll(".options");
+
+      function showAccessError(message) {
+        accessError.textContent = message;
+        accessError.classList.add("visible");
+      }
+
+      function clearAccessError() {
+        accessError.textContent = "";
+        accessError.classList.remove("visible");
+      }
+
+      function lockAccessFields() {
+        [uidInput, emailInput, mobileInput].forEach((input) => {
+          input.readOnly = true;
+        });
+        accessButton.disabled = true;
+        accessButton.textContent = "Access Granted";
+      }
+
+      function updateFieldLocks() {
+        // If already fully locked after access, keep as is.
+        if (accessButton.disabled) return;
+
+        const uidHas = uidInput.value.trim().length > 0;
+        const emailHas = emailInput.value.trim().length > 0;
+        const mobileHas = mobileInput.value.trim().length > 0;
+
+        if (uidHas) {
+          emailInput.readOnly = true;
+          mobileInput.readOnly = true;
+          uidInput.readOnly = false;
+        } else if (emailHas) {
+          uidInput.readOnly = true;
+          mobileInput.readOnly = true;
+          emailInput.readOnly = false;
+        } else if (mobileHas) {
+          uidInput.readOnly = true;
+          emailInput.readOnly = true;
+          mobileInput.readOnly = false;
+        } else {
+          uidInput.readOnly = false;
+          emailInput.readOnly = false;
+          mobileInput.readOnly = false;
+        }
+      }
+
+      function validateAccessInputs() {
+        const uid = uidInput.value.trim();
+        const email = emailInput.value.trim();
+        const mobile = mobileInput.value.trim();
+
+        if (!uid && !email && !mobile) {
+          showAccessError("Please enter your Student UID, registered email, or mobile number to continue.");
+          return false;
+        }
+
+        if (uid) {
+          if (!/^[a-z0-9]+$/i.test(uid)) {
+            showAccessError("Student UID must be alphanumeric only.");
+            return false;
+          }
+          if (uid.toUpperCase() !== "BO1234") {
+            showAccessError("Please enter correct Student UID.");
+            return false;
+          }
+        } else if (email) {
+          if (!emailInput.checkValidity()) {
+            showAccessError("Please enter a valid registered email address.");
+            return false;
+          }
+          if (email.toLowerCase() !== "snehal@gmail.com") {
+            showAccessError("Please enter the correct registered email.");
+            return false;
+          }
+        } else if (mobile) {
+          if (!/^\d{10}$/.test(mobile)) {
+            showAccessError("Please enter a valid 10-digit mobile number.");
+            return false;
+          }
+          if (mobile !== "9892160601") {
+            showAccessError("Please enter the correct registered mobile number.");
+            return false;
+          }
+        }
+
+        clearAccessError();
+        return true;
+      }
+
+      accessButton.addEventListener("click", () => {
+        if (!validateAccessInputs()) {
+          surveySection.classList.remove("visible");
+          thankYouPanel.style.display = "none";
+          return;
+        }
+
+        lockAccessFields();
+        surveySection.classList.remove("visible");
+        thankYouPanel.style.display = "none";
+
+        populateCourses();
+        courseSelect.selectedIndex = 0;
+        courseContainer.style.display = "block";
+        courseSelected.style.display = "none";
+        courseSelected.textContent = "";
+
+        const uid = uidInput.value.trim();
+        const email = emailInput.value.trim();
+        const mobile = mobileInput.value.trim();
+        const summaryParts = [];
+        if (uid) summaryParts.push(`Student UID: <span>${uid}</span>`);
+        if (email) summaryParts.push(`Email: <span>${email}</span>`);
+        if (mobile) summaryParts.push(`Mobile: <span>${mobile}</span>`);
+
+        accessSummary.innerHTML = summaryParts.join(" | ");
+        accessSummary.classList.add("visible");
+        studentInfo.textContent = "Name: Snehal Kottawar  |  Program: MBA  |  Batch: 2";
+        studentInfo.classList.add("visible");
+        courseContainer.scrollIntoView({ behavior: "smooth" });
+      });
+
+      [uidInput, emailInput, mobileInput].forEach((input) => {
+        input.addEventListener("input", updateFieldLocks);
+      });
+
+      optionGroups.forEach((group) => {
+        group.addEventListener("change", (event) => {
+          if (event.target && event.target.type === "radio") {
+            // visual handled by CSS pseudo elements; no class toggle needed
+          }
+        });
+      });
+
+      function populateCourses() {
+        if (courseSelect.options.length > 1) return;
+        const courses = [
+          "1. OLCU614: Team Leadership and Collaboration",
+          "2. BUSU620: Economic Analysis",
+          "3. MKTU605: Marketing Management",
+          "4. BUSU610: Data Analysis for Decision Making",
+          "5. ACCU602: Financial Reporting & Analysis",
+          "6. OLCU653: Creating an Inclusive Climate: Advocacy Strategies for Leaders",
+          "7. FINU607: Financial Management",
+          "8. OLCU613: Seminar in Organizational Dynamics",
+          "9. OLCU632: Leadership and Innovation",
+          "10. BUSU630: Business Process Analysis and Innovation",
+          "11. HRCU630: Conflict & Negotiation",
+          "12. BUSU640: Business Strategy and Competitive Advantage Capstone",
+        ];
+        courses.forEach((course) => {
+          const opt = document.createElement("option");
+          opt.value = course;
+          opt.textContent = course;
+          courseSelect.appendChild(opt);
+        });
+      }
+
+      courseSelect.addEventListener("change", () => {
+        if (courseSelect.value) {
+          const uid = uidInput.value.trim();
+          const email = emailInput.value.trim();
+          const mobile = mobileInput.value.trim();
+          const summaryParts = [];
+          if (uid) summaryParts.push(`Student UID: <span>${uid}</span>`);
+          if (email) summaryParts.push(`Email: <span>${email}</span>`);
+          if (mobile) summaryParts.push(`Mobile: <span>${mobile}</span>`);
+          const courseName = courseSelect.value.replace(/^\\d+\\.\\s*/, "");
+          summaryParts.push(`Course: <span>${courseName}</span>`);
+          accessSummary.innerHTML = summaryParts.join(" | ");
+          courseSelected.innerHTML = `Selected Course - <span class="course-name">${courseName}</span>`;
+          courseSelected.style.display = "block";
+          surveySection.classList.add("visible");
+          surveySection.scrollIntoView({ behavior: "smooth" });
+        } else {
+          surveySection.classList.remove("visible");
+          courseSelected.style.display = "none";
+          courseSelected.textContent = "";
+        }
+      });
+
+      surveyForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        if (!surveyForm.checkValidity()) {
+          surveyForm.reportValidity();
+          return;
+        }
+
+        mainContent.style.display = "none";
+        thankYouPanel.style.display = "flex";
+        surveyForm.reset();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    </script>
+  </body>
+</html>
+
+
